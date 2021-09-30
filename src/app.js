@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const app = express();
 const indexRoutes = require('./routes/index');
+const cors = require('cors')
 
 //configuraciones
 app.set('port', process.env.PORT || 3000 );
@@ -13,9 +14,9 @@ mongoose.connect('mongodb+srv://root:toor@cluster0.odztp.mongodb.net/Cluster0?re
 //middlewares
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
-
+app.use(cors())
 //rutas
-app.use('/products/', indexRoutes);
+app.use('/', indexRoutes);
 
 //inicializacion del server
 app.listen(app.get('port'), ()=>{

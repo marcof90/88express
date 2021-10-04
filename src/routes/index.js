@@ -3,8 +3,10 @@ const router = express.Router();
 const authService = require('../services/auth.service')
 const Product = require('../models/product');
 const User = require('../models/user')
+const Auth = require('../middleware/authentication')
+
 //routes
-router.get('/', async (req, res)=>{
+router.get('/',Auth, async (req, res)=>{
     const products = await Product.find();
     res.send(products);
 });

@@ -29,7 +29,7 @@ router.post('/login', async (req, res)=>{
         if(token){
             res.status(token.code).json(token)
         }else{
-            res.send('Error')
+            res.status(401).json({msg:'Incorrect data'})
         }
     } catch (error) {
         res.send(error)
